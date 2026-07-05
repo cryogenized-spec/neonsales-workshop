@@ -6,26 +6,60 @@
     <title>NeonSales x Gareth Workshop</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body { font-family: system-ui, sans-serif; margin: 0; padding: 0; background: #0f0f1a; color: #fff; }
-        header { background: #1a1a2e; padding: 1rem; text-align: center; }
-        .board { display: flex; overflow-x: auto; padding: 1rem; gap: 1rem; }
-        .column { background: #16213e; border-radius: 8px; width: 300px; min-height: 500px; padding: 1rem; }
-        .column h2 { margin: 0 0 1rem 0; border-bottom: 2px solid #0f3460; padding-bottom: 0.5rem; }
-        .task { background: #1e2a4d; margin-bottom: 0.75rem; padding: 1rem; border-radius: 6px; cursor: grab; }
-        .task:hover { box-shadow: 0 4px 12px rgba(0,255,200,0.2); }
-        .tag { display: inline-block; background: #0f3460; color: #0ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; }
-        .high { border-left: 4px solid #ff4444; }
-        button { background: #00ffcc; color: #000; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="logo">🛠️ NeonSales Workshop</div>
+        <div class="nav-buttons">
+            <button onclick="switchView('kanban')">Kanban</button>
+            <button onclick="switchView('list')">List</button>
+            <button onclick="showAIChat()">AI Assistant</button>
+            <button onclick="showDocuments()">Documents</button>
+            <button onclick="showSettings()">Settings</button>
+        </div>
+    </nav>
+
     <header>
-        <h1>🛠️ NeonSales x Gareth Workshop Jobs</h1>
-        <p>Paintball &amp; Airgun Repair Management</p>
+        <h1>NeonSales x Gareth Workshop Jobs</h1>
+        <p>Paintball & Airgun Repair Management System</p>
     </header>
-    
-    <div class="board" id="board"></div>
+
+    <div id="kanban-view" class="view">
+        <div class="board" id="board"></div>
+    </div>
+
+    <div id="list-view" class="view" style="display:none;">
+        <div class="list-container" id="task-list"></div>
+    </div>
+
+    <div id="ai-chat" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>AI Workshop Assistant (Gemini BYOK)</h2>
+            <div id="chat-messages"></div>
+            <input type="text" id="chat-input" placeholder="Ask AI to add task, move task, summarize...">
+            <button onclick="sendAIRequest()">Send</button>
+        </div>
+    </div>
+
+    <div id="documents" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Workshop Documents (Markdown)</h2>
+            <textarea id="doc-editor" placeholder="Write GitHub-flavored Markdown here..."></textarea>
+            <button onclick="saveDocument()">Save Document</button>
+            <div id="doc-preview"></div>
+        </div>
+    </div>
+
+    <div id="settings" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Settings - Bring Your Own Key</h2>
+            <label>Gemini API Key:</label>
+            <input type="password" id="gemini-key" placeholder="Enter your Gemini key">
+            <button onclick="saveSettings()">Save Keys</button>
+            <p>Other providers coming soon.</p>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
