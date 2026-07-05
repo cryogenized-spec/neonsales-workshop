@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeonSales x Gareth Workshop</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 0; padding: 0; background: #0f0f1a; color: #fff; }
+        header { background: #1a1a2e; padding: 1rem; text-align: center; }
+        .board { display: flex; overflow-x: auto; padding: 1rem; gap: 1rem; }
+        .column { background: #16213e; border-radius: 8px; width: 300px; min-height: 500px; padding: 1rem; }
+        .column h2 { margin: 0 0 1rem 0; border-bottom: 2px solid #0f3460; padding-bottom: 0.5rem; }
+        .task { background: #1e2a4d; margin-bottom: 0.75rem; padding: 1rem; border-radius: 6px; cursor: grab; }
+        .task:hover { box-shadow: 0 4px 12px rgba(0,255,200,0.2); }
+        .tag { display: inline-block; background: #0f3460; color: #0ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin-right: 4px; }
+        .high { border-left: 4px solid #ff4444; }
+        button { background: #00ffcc; color: #000; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛠️ NeonSales x Gareth Workshop Jobs</h1>
+        <p>Paintball &amp; Airgun Repair Management</p>
+    </header>
+    
+    <div class="board" id="board"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
